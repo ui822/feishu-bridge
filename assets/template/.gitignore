@@ -1,0 +1,10 @@
+queue/
+state/
+logs/
+test_files/
+.venv/
+config.json
+credentials.json
+__pycache__/
+*.pyc
+*.tmp
