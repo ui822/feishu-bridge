@@ -1,0 +1,17 @@
+[Unit]
+Description=Feishu agent bridge (supervisor)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Adjust both paths if the bridge is not deployed at the default location.
+WorkingDirectory=%h/workspace/feishu-bridge
+ExecStart=%h/workspace/feishu-bridge/.venv/bin/python -u %h/workspace/feishu-bridge/bridge/supervisor.py --credentials-file %h/workspace/feishu-bridge/credentials.json
+Restart=on-failure
+RestartSec=10
+# The supervisor also restarts its daemon child with capped backoff.
+# Do not put App Secret, tokens, or proxy URLs in this unit.
+
+[Install]
+WantedBy=default.target
